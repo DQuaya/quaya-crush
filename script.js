@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    candyCrushGame();
+    quayaCrushGame();
 });
 
-function candyCrushGame() {
+function quayaCrushGame() {
     const grid = document.querySelector(".grid");
     const scoreDisplay = document.getElementById("score");
     const width = 8;
     const squares = [];
     let score = 0;
 
-    const candyColors = [
+    const gamePics = [
         "https://cdn.freebiesupply.com/images/large/2x/golden-state-warriors-logo-transparent.png",
         "https://files.softicons.com/download/computer-icons/xbox-360-icons-by-abhi-aravind/png/256x256/Red%20Controller.png",
         "https://i.ibb.co/Rkg5Ygh2/Banner-Img1.png",
@@ -22,8 +22,8 @@ function candyCrushGame() {
             const square = document.createElement("div");
             square.setAttribute("draggable", true);
             square.setAttribute("id", i);
-            let randomColor = Math.floor(Math.random() * candyColors.length);
-            square.style.backgroundImage = `url(${candyColors[randomColor]})`;
+            let randomColor = Math.floor(Math.random() * gamePics.length);
+            square.style.backgroundImage = `url(${gamePics[randomColor]})`;
             grid.appendChild(square);
             squares.push(square);
         }
@@ -107,9 +107,9 @@ function candyCrushGame() {
                 const isFirstRow = firstRow.includes(i);
                 if (isFirstRow && squares[i].style.backgroundImage === "") {
                     let randomColor = Math.floor(
-                        Math.random() * candyColors.length
+                        Math.random() * gamePics.length
                     );
-                    squares[i].style.backgroundImage = candyColors[randomColor];
+                    squares[i].style.backgroundImage = gamePics[randomColor];
                 }
             }
         }
