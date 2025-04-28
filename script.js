@@ -21,27 +21,27 @@ function quayaCrushGame() {
         "https://imgproxy.attic.sh/insecure/f:webp/q:90/w:256/plain/https://imgproxy.attic.sh/3BxHXyk4DWTvT9-p4x7O_Hx7AprMbzNUqKhFoJNxCmg/rs:fit:768:768:1:1/t:1:FF00FF:false:false/aHR0cHM6Ly9hdHRp/Yy5zaC9rdzA1N3M4/MHFyaXk3OTkwc3F6/emZlYjNqdmFq",
     ];
 
-    // Right here I am createing the game board
+    // Right here I am creating the game board
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
             const square = document.createElement("div");
-            square.setAttribute("draggable", true); // Allow squares to be dragged
-            square.setAttribute("id", i); // Set an id for tracking
-            let randomColor = Math.floor(Math.random() * gamePics.length); // Pick a random image
+            square.setAttribute("draggable", true); // Right here I am instructing the game to allow squares to be dragged
+            square.setAttribute("id", i); // Right here I am seting an id for tracking
+            let randomColor = Math.floor(Math.random() * gamePics.length); // Right here I am picking a random image
             square.style.backgroundImage = `url(${gamePics[randomColor]})`;
             grid.appendChild(square);
-            squares.push(square); // Add square to squares array
+            squares.push(square); // Right here I am adding a square to squares array
         }
     }
     createBoard();
 
-    // Variables to track dragging
+    // Right here I am creating variables to track dragging
     let colorBeingDragged;
     let colorBeingReplaced;
     let squareIdBeingDragged;
     let squareIdBeingReplaced;
 
-     // Add drag event listeners to each square
+     // Right here I am creating a add drag event listeners to each square
     squares.forEach((square) =>
         square.addEventListener("dragstart", dragStart)
     );
@@ -55,13 +55,13 @@ function quayaCrushGame() {
     );
     squares.forEach((square) => square.addEventListener("drop", dragDrop));
 
-    // When drag starts, remember the color and id
+    // This function monitors when a drag starts, and remembers the color and id
     function dragStart() {
         colorBeingDragged = this.style.backgroundImage;
         squareIdBeingDragged = parseInt(this.id);
     }
 
-    // Allow dropping by preventing default
+    // Right here I am allowing dropping by preventing default
     function dragOver(e) {
         e.preventDefault();
     }
@@ -70,35 +70,33 @@ function quayaCrushGame() {
         e.preventDefault();
     }
 
-     // When a draggable element leaves a valid drop target
+     // Right here I am monitoring when a draggable element leaves a valid drop target
     function dragLeave() {
         this.style.backgroundImage = "";
     }
 
-    // When a square is dropped onto another square
+    // Right here I am monitoring when a square is dropped onto another square
     function dragDrop() {
         colorBeingReplaced = this.style.backgroundImage;
         squareIdBeingReplaced = parseInt(this.id);
         this.style.backgroundImage = colorBeingDragged;
-        squares[
-            squareIdBeingDragged
-        ].style.backgroundImage = colorBeingReplaced;
+        squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced;
     }
 
-    // After dropping, check if the move was valid
+    // Right here I am instructing the gme to check after dropping, to see if the move was valid
     function dragEnd() {
         let validMoves = [
-            squareIdBeingDragged - 1, // left
-            squareIdBeingDragged - width, // above
-            squareIdBeingDragged + 1, // right
-            squareIdBeingDragged + width // below
+            squareIdBeingDragged - 1, // left position
+            squareIdBeingDragged - width, // above position
+            squareIdBeingDragged + 1, // right position
+            squareIdBeingDragged + width // below position
         ];
         let validMove = validMoves.includes(squareIdBeingReplaced);
 
         if (squareIdBeingReplaced && validMove) {
-            squareIdBeingReplaced = null; // move was valid
+            squareIdBeingReplaced = null; // checking to see if the move was valid
         } else if (squareIdBeingReplaced && !validMove) {
-             // Move was invalid — undo the swap
+             // If the move was invalid, then the game will undo the swap
             squares[
                 squareIdBeingReplaced
             ].style.backgroundImage = colorBeingReplaced;
@@ -106,13 +104,13 @@ function quayaCrushGame() {
                 squareIdBeingDragged
             ].style.backgroundImage = colorBeingDragged;
         } else
-        // Move was invalid — reset
+        // If the move was invalid the gamw resets
             squares[
                 squareIdBeingDragged
             ].style.backgroundImage = colorBeingDragged;
     }
 
-    // Move pieces down if there is empty space below
+    // Right here the function moves pieces down if there is empty space below
     function moveIntoSquareBelow() {
         for (i = 0; i < 55; i++) { // Up to the second-to-last row
             if (squares[i + width].style.backgroundImage === "") {
@@ -122,7 +120,7 @@ function quayaCrushGame() {
                 const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
                 const isFirstRow = firstRow.includes(i);
 
-                // If first row square becomes empty, generate a new random image
+                //  Right here I am instructing the game to generate a new random image if first row square becomes empty,
                 if (isFirstRow && squares[i].style.backgroundImage === "") {
                     let randomColor = Math.floor(
                         Math.random() * gamePics.length
@@ -133,14 +131,14 @@ function quayaCrushGame() {
         }
     }
 
-     // Check for 4 matching squares in a row
+     // Right here I am checking for 4 matching squares in a row
     function checkRowForFour() {
         for (i = 0; i < 60; i++) {
             let rowOfFour = [i, i + 1, i + 2, i + 3];
             let decidedColor = squares[i].style.backgroundImage;
             const isBlank = squares[i].style.backgroundImage === "";
 
-            // Skip over invalid wrap-around indexes
+            // Right here I am skipping over invalid wrap-around indexes
             const notValid = [
                 5,
                 6,
@@ -166,8 +164,7 @@ function quayaCrushGame() {
             ];
             if (notValid.includes(i)) continue;
 
-            // If all 4 squares match and not blank, clear them
-            if (
+            // Right here I am clearing the sqaures if all 4 squares match and not blank
                 rowOfFour.every(
                     (index) =>
                         squares[index].style.backgroundImage === decidedColor &&
@@ -184,7 +181,7 @@ function quayaCrushGame() {
     }
     checkRowForFour(); // Initial check
 
-    // Check for 4 matching squares in a column
+    // Right here I am checking for 4 matching squares in a column
     function checkColumnForFour() {
         for (i = 0; i < 39; i++) {
             let columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -208,7 +205,7 @@ function quayaCrushGame() {
     }
     checkColumnForFour(); // Initial check
 
-    // Check for 3 matching squares in a row
+    // Right here I am checking for 3 matching squares in a row
     function checkRowForThree() {
         for (i = 0; i < 61; i++) {
             let rowOfThree = [i, i + 1, i + 2];
@@ -251,7 +248,7 @@ function quayaCrushGame() {
     }
     checkRowForThree(); // Initial check 
 
-    // Check for 3 matching squares in a column
+    // Right here I am checking for 3 matching squares in a column
     function checkColumnForThree() {
         for (i = 0; i < 47; i++) {
             let columnOfThree = [i, i + width, i + width * 2];
@@ -273,9 +270,9 @@ function quayaCrushGame() {
             }
         }
     }
-    checkColumnForThree(); // Initial check "We are running this function once when the game first loads to check for any matches (rows or columns of three or four) before the player does anything."
+    checkColumnForThree(); 
 
-    // Continuously check for matches and move pieces down every 100ms
+    // Right here I am continuously checking for matches and move pieces down every 100ms
     window.setInterval(function () {
         checkRowForFour();
         checkColumnForFour();
