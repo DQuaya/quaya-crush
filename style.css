@@ -40,12 +40,10 @@ h1{
     color: white;
 }
 
-.invisble{
-    background: palevioletred;
-}
+
 
 body{
-    background-image: url('./Breezy\ Games\ \(1\).png'); */
+    background-image: url('./Breezy\ Games\ \(1\).png'); 
     max-width: 100vh;
     display: flex;
     background-size: cover;
