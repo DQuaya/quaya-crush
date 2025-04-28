@@ -1,3 +1,4 @@
+// Coded by DonQuaya
 // Right here I am instructing the app to wait until the DOM is fully loaded before starting the game
 document.addEventListener("DOMContentLoaded", () => {
     quayaCrushGame();
@@ -285,3 +286,6 @@ function quayaCrushGame() {
     }, 100);
 }
 
+
+
+// Coded by DonQuaya
