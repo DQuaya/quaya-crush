@@ -1,0 +1,82 @@
+/* Styled by DonQuaya */
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    height: 560px;
+    width: 560px;
+    background-color: black;
+    border: 3px solid blue;
+    padding: 5px;
+    color: yellow;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grid div{
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+h3{
+    font-family: Montserrat, sans-serif;
+    text-align: uppercase;
+    margin-top: -5px;
+    color: white;
+}
+
+h1{
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    margin-top: -10px;
+    font-size: 40px;
+    color: white;
+}
+
+.invisble{
+    background: palevioletred;
+}
+
+body{
+    background-image: url('./Breezy\ Games\ \(1\).png'); */
+    max-width: 100vh;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.scoreBoard{
+    background-color: blue;
+    border-radius: 20px;
+    width: 15%;
+    height: 80px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: orange;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scoreBoard h1{
+    color: orange;
+}
+
+
+/* Styled by DonQuaya */
