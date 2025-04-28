@@ -80,10 +80,12 @@ function quayaCrushGame() {
         colorBeingReplaced = this.style.backgroundImage;
         squareIdBeingReplaced = parseInt(this.id);
         this.style.backgroundImage = colorBeingDragged;
-        squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced;
+        squares[
+            squareIdBeingDragged
+        ].style.backgroundImage = colorBeingReplaced;
     }
 
-    // Right here I am instructing the gme to check after dropping, to see if the move was valid
+    // Right here I am instructing the game to check after dropping, to see if the move was valid
     function dragEnd() {
         let validMoves = [
             squareIdBeingDragged - 1, // left position
@@ -96,7 +98,7 @@ function quayaCrushGame() {
         if (squareIdBeingReplaced && validMove) {
             squareIdBeingReplaced = null; // checking to see if the move was valid
         } else if (squareIdBeingReplaced && !validMove) {
-             // If the move was invalid, then the game will undo the swap
+             // Checking to see if the move was invalid — so that the game can undo the swap
             squares[
                 squareIdBeingReplaced
             ].style.backgroundImage = colorBeingReplaced;
@@ -104,15 +106,15 @@ function quayaCrushGame() {
                 squareIdBeingDragged
             ].style.backgroundImage = colorBeingDragged;
         } else
-        // If the move was invalid the gamw resets
+        // Right here I am instructing the game to reset if the move was invalid
             squares[
                 squareIdBeingDragged
             ].style.backgroundImage = colorBeingDragged;
     }
 
-    // Right here the function moves pieces down if there is empty space below
+    // Right here I am making it where the user can move pieces down if there is empty space below
     function moveIntoSquareBelow() {
-        for (i = 0; i < 55; i++) { // Up to the second-to-last row
+        for (i = 0; i < 55; i++) { // Move pieces up to the second-to-last row
             if (squares[i + width].style.backgroundImage === "") {
                 squares[i + width].style.backgroundImage =
                     squares[i].style.backgroundImage;
@@ -120,7 +122,7 @@ function quayaCrushGame() {
                 const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
                 const isFirstRow = firstRow.includes(i);
 
-                //  Right here I am instructing the game to generate a new random image if first row square becomes empty,
+                // Checking to see if first row square becomes empty,if so generate a new random image
                 if (isFirstRow && squares[i].style.backgroundImage === "") {
                     let randomColor = Math.floor(
                         Math.random() * gamePics.length
@@ -138,7 +140,7 @@ function quayaCrushGame() {
             let decidedColor = squares[i].style.backgroundImage;
             const isBlank = squares[i].style.backgroundImage === "";
 
-            // Right here I am skipping over invalid wrap-around indexes
+            // Right here I am skiping over invalid wrap-around indexes
             const notValid = [
                 5,
                 6,
@@ -164,7 +166,8 @@ function quayaCrushGame() {
             ];
             if (notValid.includes(i)) continue;
 
-            // Right here I am clearing the sqaures if all 4 squares match and not blank
+            // Checking to see ff all 4 squares match and not blank, clear them
+            if (
                 rowOfFour.every(
                     (index) =>
                         squares[index].style.backgroundImage === decidedColor &&
@@ -270,9 +273,9 @@ function quayaCrushGame() {
             }
         }
     }
-    checkColumnForThree(); 
+    checkColumnForThree(); // Initial check "We are running this function once when the game first loads to check for any matches (rows or columns of three or four) before the player does anything."
 
-    // Right here I am continuously checking for matches and move pieces down every 100ms
+    // Right here I am continuously check for matches and move pieces down every 100ms
     window.setInterval(function () {
         checkRowForFour();
         checkColumnForFour();
